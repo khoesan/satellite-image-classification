@@ -19,16 +19,27 @@ The dataset is divided into:
 The model uses **Transfer Learning** with a pre-trained base (e.g., `MobileNetV2`), followed by custom layers:
 
 ```python
-model = Sequential([
-    base_model,
-    Conv2D(64, (3, 3), activation='relu', padding='same'),
-    GlobalAveragePooling2D(),
-    Dense(128, activation='relu'),
-    Dropout(0.4),
-    Dense(64, activation='relu'),
-    Dropout(0.3),
-    Dense(2, activation='softmax')  # 2 classes: cloudy, water
-])
+model_1 = Sequential()
+ 
+model_1.add(Conv2D(32, (3, 3), padding='same', activation='relu', input_shape=(150,150,1)))
+model_1.add(BatchNormalization())
+model_1.add(MaxPool2D((2, 2)))
+ 
+model_1.add(Conv2D(32, (4, 4),padding='same', activation='relu'))
+model_1.add(BatchNormalization())
+model_1.add(MaxPool2D((2, 2)))
+ 
+model_1.add(Conv2D(32, (7, 7), padding='same', activation='relu'))
+model_1.add(BatchNormalization())
+model_1.add(MaxPool2D((2, 2)))
+ 
+model_1.add(Flatten())
+model_1.add(Dense(128, activation = 'relu'))
+model_1.add(Dropout(0.5))
+model_1.add(Dense(64, activation = 'relu'))
+model_1.add(Dropout(0.3))
+ 
+model_1.add(Dense(1, activation='sigmoid'))
 ```
 
 ## 📊 Evaluation Metrics
