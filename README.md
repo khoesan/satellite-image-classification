@@ -16,7 +16,7 @@ The dataset is divided into:
 
 ## 🧠 Model Architecture
 
-The model uses **Transfer Learning** with a pre-trained base (e.g., `MobileNetV2`), followed by custom layers:
+The model uses **Sequential, Conv2D, and Pooling Layer**:
 
 ```python
 model_1 = Sequential()
